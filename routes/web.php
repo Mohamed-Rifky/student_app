@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\SettingsController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\lottieController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,10 +17,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('main');
+Route::get('/getLottieImage', [lottieController::class, 'getLoginImage'])->name('getLoginImage');
+Route::get('/getLoadingImage', [lottieController::class, 'getLoadingImage'])->name('getLoadingImage');
+Route::get('/logout', [LoginController::class,'logout']);
+Auth::routes(
+    ['register' => false]
+);
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/settings', [SettingsController::class, 'viewSettings'])->name('settings.index');
+Route::post('/settings', [SettingsController::class, 'StoreSettings'])->name('settings.store');
+

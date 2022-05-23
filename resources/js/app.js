@@ -7,7 +7,15 @@
 require('./bootstrap');
 
 window.Vue = require('vue').default;
+require("admin-lte");
+const Swal  = require('sweetalert2');
 
+import vue_pagination from 'laravel-vue-pagination';
+Vue.use(vue_pagination);
+Vue.component('pagination',vue_pagination);
+$(document).ready(function () {
+    $(".alert").fadeOut(5000);
+});
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -26,7 +34,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
+Vue.component('time_component', require('./components/time/time.vue').default);
 const app = new Vue({
     el: '#app',
 });
