@@ -108,9 +108,6 @@
                                                 type="submit">Log In
                                         </button>
                                     </div>
-                                    <div class="mt-4 text-center">
-                                        Designed & Developed By <a href="https://helium.lk/" class="text-white" target="_blank"> Helium Solutions </a>
-                                    </div>
                                 </form>
                             </div>
                         </form>
