@@ -49,7 +49,12 @@ use App\Http\Controllers\studentController;
 
 });
 
-Route::group(['middleware' => ['role:admin|student']], function () {
+Route::group(['middleware' => ['role:student']], function () {
     Route::get('/changePassword', [UserController::class, 'changePassword'])->name('changePassword');
     Route::post('/changePasswordSave', [UserController::class, 'changePasswordSave'])->name('changePasswordSave');
+
+    Route::get('/edit_profile', [studentController::class, 'editProfile'])->name('editProfile');
+    Route::get('/get_profile', [studentController::class, 'getProfile'])->name('getProfile');
+    Route::post('/update_profile', [studentController::class, 'updateProfile'])->name('updateProfile');
+    Route::post('/update_profile_picture', [studentController::class, 'updateProfilePicture'])->name('updateProfilePicture');
 });

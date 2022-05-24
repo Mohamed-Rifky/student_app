@@ -35,6 +35,7 @@ $(document).ready(function () {
  */
 Vue.component('time_component', require('./components/time/time.vue').default);
 Vue.component('student', require('./components/students/student.vue').default);
+Vue.component('edit_profile', require('./components/students/edit_profile.vue').default);
 const app = new Vue({
     el: '#app',
 });

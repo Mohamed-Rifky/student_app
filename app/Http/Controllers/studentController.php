@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\studentProfile;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\sendStudnetDetailsMail;
+use Illuminate\Support\Str;
 use Validator;
 use Mail;
 class studentController extends Controller
@@ -68,8 +70,61 @@ class studentController extends Controller
         $student->assignRole('student');
 
         $mail = Mail::to($request->email)->send(new sendStudnetDetailsMail($data));
+        $data =  array('user_data' => $newUser , 'profile_data' => $studentProfile);
+        return $data;
     }
     public function mail(Request $request){
         return view('email.email');
+    }
+    public function editProfile(){
+        return view('students.edit_profile');
+    }
+    public function getProfile(){
+        $user = Auth::user()->id;
+        $data = User::where('id',$user)->with('student_profile')->first();
+        if($data->student_profile->image_path){
+            $data->student_profile->image_path = asset('images/profile_pictures/'.$data->student_profile->image_path);
+            $data->student_profile->has_image = true;
+        } else {
+            $data->student_profile->image_path = asset("images/no_img.jpg");
+            $data->student_profile->has_image = false;
+        }
+        return $data;
+    }
+    public function updateProfile(Request $request){
+        $id =  $request->user_id;
+        $newUser = User::find($id);
+        $newUser->name = $request->name;
+        $newUser->save();
+
+        $profileData = studentProfile::where('user_id',$id)->first();
+        $studentProfile = studentProfile::find($profileData->id);
+        $studentProfile->address = $request->address;
+        $studentProfile->dob = $request->dob;
+        $studentProfile->contact_no = $request->contact_no;
+        $studentProfile->save();
+
+        $data =  array('user_data' => $newUser , 'profile_data' => $studentProfile);
+        return $data;
+    }
+    public function updateProfilePicture(Request $request){
+        ini_set('max_execution_time', 0);
+        ini_set('memory_limit', '-1');
+
+        if ($request->hasfile('image')) {
+            $file = $request->image;
+            $filenameWithExt = $file->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $mimeType = $file->getMimeType();
+            $fileDb = str_replace(' ', '', $filename) . '_' . Str::random(20) . '.' . $extension;
+            \Storage::disk('profile_pictures')->put($fileDb, file_get_contents($file));
+
+            $id =  $request->id;
+            $profileData = studentProfile::where('user_id',$id)->first();
+            $studentProfile = studentProfile::find($profileData->id);
+            $studentProfile->image_path = $fileDb;
+            $studentProfile->save();
+        }
     }
 }

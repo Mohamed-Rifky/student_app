@@ -33,6 +33,14 @@ $re = Route::current()->getName();
                         <p>Dashboard</p>
                     </a>
                 </li>
+                @role('student')
+                <li class="nav-item has-treeview">
+                    <a href="{{ route('editProfile') }}" class="nav-link {{ $re === 'editProfile' ? 'active' : '' }}">
+                        <i class="fas fa-list nav-icon"></i>
+                        <p>My Profile</p>
+                    </a>
+                </li>
+                @endrole
                 @role('admin')
                 <li class="nav-item has-treeview">
                     <a href="{{ route('student.list') }}" class="nav-link {{ $re === 'student.list' ? 'active' : '' }}">
