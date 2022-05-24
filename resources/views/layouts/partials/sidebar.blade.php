@@ -33,6 +33,7 @@ $re = Route::current()->getName();
                         <p>Dashboard</p>
                     </a>
                 </li>
+                @role('admin')
                 <li class="nav-item has-treeview">
                     <a href="{{ route('student.list') }}" class="nav-link {{ $re === 'student.list' ? 'active' : '' }}">
                         <i class="fas fa-user nav-icon"></i>
@@ -44,6 +45,30 @@ $re = Route::current()->getName();
                         <i class="nav-icon fas fa-cogs"></i>
                         <p>Settings</p>
                     </a>
+                </li>
+                @endrole
+                <li class="nav-item has-treeview {{ $re == 'changePassword' || $re == 'new_user' ? 'active menu-open' : '' }}">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>User Settings<i class="right fas fa-angle-left"></i></p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @role('admin')
+                        <li class="nav-item">
+                            <a href="{{ route('new_user') }}" class="nav-link {{ $re == 'new_user'  ? 'active' : '' }}">
+                                <i class="fas fa-user nav-icon"></i>
+                                <p>Manage Users</p>
+                            </a>
+                        </li>
+                        @endrole
+                        <li class="nav-item">
+                            <a href="{{ route('changePassword') }}" class="nav-link {{ $re == 'changePassword'  ? 'active' : '' }}">
+                                <i class="fas fa-lock nav-icon"></i>
+                                <p>Change Password</p>
+                            </a>
+                        </li>
+
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="document.getElementById('logout-form').submit()">

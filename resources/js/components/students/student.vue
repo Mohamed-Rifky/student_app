@@ -1,10 +1,24 @@
 <template>
     <div class="card">
         <div class="card-body">
+            <div class="loading" v-if="loading">
+                <img src="images/loading.gif" alt="">
+            </div>
             <div class="row">
-                <div class="col-md-2 offset-10">
-                    <button type="button" class="btn btn-danger float-right" @click="addStudentModal">Add Student</button>
+                <div class="col-md-9">
+                    <div class="form-group">
+                        <input type="text" value="" name="search" placeholder="Search Student"
+                               aria-label="Search Student" aria-describedby="Search Student" @input="search"
+                               class="form-control" autocomplete="off" v-model="search_data">
+                    </div>
                 </div>
+                <div class="col-md-3">
+                    <div class="btn-group" role="group" aria-label="Action Buttons">
+                        <button type="button" class="btn btn-primary float-right" @click="search">Search Student</button>
+                        <button type="button" class="btn btn-danger float-right" @click="addStudentModal">Add Student</button>
+                    </div>
+                </div>
+
             </div>
             <div class="row mt-3">
                 <div class="col-md-12">
@@ -137,6 +151,7 @@ export default {
             loading: false,
             searchByFilters : false,
             students: {},
+            search_data : "",
             widowName : "",
             student_data: {
                 email: "",
@@ -155,6 +170,7 @@ export default {
     methods: {
         getStudents(page = 1) {
             this.loading = true;
+            this.searchByFilters = false;
             axios.get(flagsUrl + 'get_students?page=' + page)
                 .then((data) => {
                     this.students = data.data;
@@ -179,7 +195,13 @@ export default {
                             html: html,
                         });
                     } else {
-                        $("#student_modal").modal('hide');
+                        Swal.fire({
+                            title: "Success",
+                            text: "Student Added!",
+                            icon: "success"
+                        }).then(function() {
+                            $("#student_modal").modal('hide');
+                        });
                     }
                 })
                 .catch((error) => console.log(error))
@@ -189,6 +211,18 @@ export default {
         },
         addStudentModal(){
             $("#student_modal").modal('show');
+        },
+        search(page = 1) {
+            this.searchByFilters = true;
+            this.loading = true;
+            axios.post(flagsUrl + 'get_students?page=' + page, {
+                search: this.search_data,
+            })
+                .then(response => {
+                    this.students = response.data;
+                }).finally(()=>{
+                this.loading = false;
+            });
         },
     },
 }

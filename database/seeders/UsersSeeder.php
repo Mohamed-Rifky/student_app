@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use DB;
 use Illuminate\Support\Facades\Hash;
@@ -20,5 +21,7 @@ class UsersSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => Hash::make('123456789'),
         ]);
+        $admin = User::find(1);
+        $admin->assignRole('admin');
     }
 }

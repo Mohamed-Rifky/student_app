@@ -17,7 +17,11 @@ class studentController extends Controller
     public function getStudents(Request $request){
         $method = $request->method();
         if ($method === 'POST') {
-            $students = User::has('student_profile')->with('student_profile')->paginate(10);
+            $students = User::has('student_profile')->with('student_profile');
+            if($request->search){
+                $students->where('name', 'LIKE', "%{$request->search}%");
+            }
+            $students = $students->paginate(10);
         } else {
             $students = User::has('student_profile')->with('student_profile')->paginate(10);
         }
@@ -59,6 +63,10 @@ class studentController extends Controller
         $studentProfile->contact_no = $request->contact_no;
         $studentProfile->save();
         $data = array('user' => $newUser,'profile' => $studentProfile);
+
+        $student = User::find($newUser->id);
+        $student->assignRole('student');
+
         $mail = Mail::to($request->email)->send(new sendStudnetDetailsMail($data));
     }
     public function mail(Request $request){
