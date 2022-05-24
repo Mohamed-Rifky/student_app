@@ -34,6 +34,12 @@ $re = Route::current()->getName();
                     </a>
                 </li>
                 <li class="nav-item has-treeview">
+                    <a href="{{ route('student.list') }}" class="nav-link {{ $re === 'student.list' ? 'active' : '' }}">
+                        <i class="fas fa-user nav-icon"></i>
+                        <p>Students</p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview">
                     <a href="{{ route('settings.index') }}" class="nav-link {{ $re == 'settings.index' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-cogs"></i>
                         <p>Settings</p>

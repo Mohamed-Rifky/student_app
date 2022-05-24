@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\lottieController;
+use App\Http\Controllers\studentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,3 +34,7 @@ Auth::routes(
 Route::get('/settings', [SettingsController::class, 'viewSettings'])->name('settings.index');
 Route::post('/settings', [SettingsController::class, 'StoreSettings'])->name('settings.store');
 
+Route::get('/list_student', [studentController::class, 'listStudent'])->name('student.list');
+Route::get('/mail', [studentController::class, 'mail'])->name('student.mail');
+Route::match(['get','post'],'/get_students', [studentController::class, 'getStudents'])->name('student.get');
+Route::post('/register_student', [studentController::class, 'registerStudent'])->name('student.register');

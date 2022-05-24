@@ -543,7 +543,7 @@ function apiResponse($data,$status){
     }
     return $prefix.'-'.$zeros.$last_number;
 }
- function generateReg($model,$length = 4,$prefix) {
+ function generateReg($model,$prefix,$length = 4) {
     $maxID = $model::max('id') + 1 ;
     $userCode = str_pad($maxID, $length, '0', STR_PAD_LEFT);
     return $prefix.'-'.$userCode;

@@ -30,6 +30,7 @@
             padding: 0 0 28px 0;
             overflow-x: hidden;
         }
+
         .card {
             background: rgba(255, 255, 255, 0.05);
             color: #fff;
@@ -50,16 +51,19 @@
                     <div class="">
                         <div class="row py-4 justify-content-center">
                             <div class="col-6">
-                                    <img src="{{ asset('images/logo.jpg') }}" alt=""  class="img-fluid rounded shadow-sm">
+                                <img src="{{ asset('images/logo.jpg') }}" alt="" class="img-fluid rounded shadow-sm">
                             </div>
                         </div>
                     </div>
                     <div class="card-body pt-0">
                         <h1 class="text-danger text-capitalize text-center">Sorry ! Access Denied !!!</h1>
-                        <p class="shadow-sm">Unauthorized Access was attempted and has been reported. If you feel you have reached this in error,</p>
-                        <h5 class="text-capitalize text-danger"> please contact <span class="text-uppercase">{{ config('settings.app_name') }} </span> support </h5>
+                        <p class="shadow-sm">Unauthorized Access was attempted and has been reported. If you feel you
+                            have reached this in error,</p>
+                        <h5 class="text-capitalize text-danger"> please contact <span
+                                class="text-uppercase">{{ config('settings.app_name') }} </span> support </h5>
                         <div class="mt-3">
                             <a href="{{ route('home') }}" class="btn btn-info btn-block">Go Home</a>
+                        </div>
                     </div>
                 </div>
             </div>

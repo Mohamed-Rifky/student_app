@@ -15,7 +15,14 @@ class CreateStudentProfilesTable extends Migration
     {
         Schema::create('student_profiles', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
+            $table->string('student_reg_no');
+            $table->text('address')->nullable();
+            $table->date('dob')->nullable();
+            $table->string('contact_no')->nullable();
+            $table->text('image_path')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
