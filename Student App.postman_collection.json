@@ -1,0 +1,412 @@
+{
+	"info": {
+		"_postman_id": "a864ff52-49a4-491a-af4a-c00c81bee819",
+		"name": "Student App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Auth",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "grant_type",
+									"value": "password"
+								},
+								{
+									"key": "client_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "QVMwOWYhWJ1fhFHEzRLHTwBkvX8qhPBsoEr0hQYs",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "rxs0528a@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{app_url}}/oauth/token",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Settings",
+			"item": [
+				{
+					"name": "Get Settings",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{app_url}}/api/settings",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"api",
+								"settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Settings",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "app_name",
+									"value": "StuApp",
+									"type": "text"
+								},
+								{
+									"key": "app_description",
+									"value": "Studnet app",
+									"type": "text"
+								},
+								{
+									"key": "version",
+									"value": "0.2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{app_url}}/api/save_settings",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"api",
+								"save_settings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Student",
+			"item": [
+				{
+					"name": "Save New Student",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "ggdd@gmai.com",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Colombo 12",
+									"type": "text"
+								},
+								{
+									"key": "dob",
+									"value": "1996-10-12",
+									"type": "text"
+								},
+								{
+									"key": "contact_no",
+									"value": "0777678678",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "zamaniya",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{app_url}}/api/register_student",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"api",
+								"register_student"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Student",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "ggdd@gmai.com",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Colombo 12",
+									"type": "text"
+								},
+								{
+									"key": "dob",
+									"value": "1996-10-12",
+									"type": "text"
+								},
+								{
+									"key": "contact_no",
+									"value": "0777678678",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "zamaniya",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "5",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{app_url}}/api/update_student",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"api",
+								"update_student"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile Pic",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "7",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/home/rifky/Downloads/bottom.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{app_url}}/api/update_profile_picture",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"api",
+								"update_profile_picture"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Student",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{app_url}}/api/get_student",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"api",
+								"get_student"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiNDhhYzgzYTY1ZGRjNGQ1NjViNDdhYTYzNjlhZmM0YzQ5NDZlNDA4MDRkYjA4NDZjMzA1ZTYzMzI0NTNkMjhiNGQ3NGUzYTRmZWMxOTBhNjkiLCJpYXQiOjE2NTM0MDk2MzEsIm5iZiI6MTY1MzQwOTYzMSwiZXhwIjoxNjU0NzA1NjMxLCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.ohgXCIJwij5BmcIc5eoP4rwKE-rHtvRSeRy7MQNGishIksY59h20nLo_gvGSwGXQzfi5o7SDAJ3VZ5RdnlThKUwj6ji-sttX1AAdNEkP1xhIGA5draWoO_-ozQVFnDJwrXl1_CqnKvvXlbZyP2XJo5J0nx849Au2QKQ3dQ8tWnMeUf_v3l8untbLeOQcd9vNCY6B5FmCtL6Rfsno6YsrquHwQnWDv0-aL0Wvza_5zHeWqNACuTY10s9gVeid1TwSk-7kCQ_F86XXXvGjhRvaBQ7u6Q0OoMFbmuC09hg4yRk0nk_IDp0OoBytxa_0LzBohcBz-Nc3-Bog6eoo8SIMNOIyNRtBFqTb3LjgluljKl-pFUMm00R6Zr5PCA-PFx9o4jRtGtojCdi5KZAC38-Lv9tPzWmeQ0fPlmMHfoKeCLvLCwEBfQfB0H4wCEV0LEO7FYZRQmdDo8pIWYx7UWLEHvDTEfvhkwvVKOWcDUwbtBx-dDCNFdjlzCHg09pYXMeABEauvzNMJUAjUiJQn7LaIJrkze1gC0Mn1A0z-myAJ1BgDV4bQG_kQwo4fwj-TYpGVSWQWo1-mQcUum6xKZWtpaNyvUieIQbn019DPCDR9L_FRaGkLjfhNhSfhZN7vqZ7on2Dsy3PQNlDNAW4pr8TwjKvyjgyaqJdb2HElYFQQGE",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "app_url",
+			"value": "http://student_app.d",
+			"type": "string"
+		}
+	]
+}
