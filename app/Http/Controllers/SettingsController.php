@@ -8,6 +8,9 @@ use Validator;
 
 class SettingsController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
     public function viewSettings()
     {
         $settings = Settings::all('key', 'value')
@@ -16,6 +19,9 @@ class SettingsController extends Controller
                 return $setting->value;
             })
             ->toArray();
+        if (request()->is('api*')) {
+            return apiResponse($settings,true);
+        }
         return view('settings.edit',compact('settings'));
     }
     public function StoreSettings(Request $request)
@@ -37,5 +43,14 @@ class SettingsController extends Controller
             $setting->save();
         }
         return redirect()->route('settings.index')->with('success', 'Success, Settings Has Been Updated.');
+    }
+    public function StoreSettingsApi(Request $request)
+    {
+        $data = $request->all();
+        foreach ($data as $key => $value) {
+            $setting = Settings::firstOrCreate(['key' => $key]);
+            $setting->value = $value;
+            $setting->save();
+        }
     }
 }
