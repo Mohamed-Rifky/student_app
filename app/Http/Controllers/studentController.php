@@ -31,6 +31,23 @@ class studentController extends Controller
         } else {
             $students = User::has('student_profile')->with('student_profile')->paginate(10);
         }
+        if($students){
+            foreach($students as $student){
+                if($student->student_profile) {
+                    if ($student->student_profile->image_path) {
+                        $student->student_profile->image_path = asset('images/profile_pictures/' . $student->student_profile->image_path);
+                        $student->student_profile->has_image = true;
+                    } else {
+                        $student->student_profile->image_path = asset("images/no_img.jpg");
+                        $student->student_profile->has_image = false;
+                    }
+                }
+            }
+        }
+
+        if (request()->is('api*')) {
+            return apiResponse($students,true);
+        }
         return $students;
     }
     public function registerStudent(Request $request){
